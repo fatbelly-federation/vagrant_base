@@ -1,0 +1,45 @@
+---
+# Specify the type of server to build
+role: docker
+stage: development
+platform: vagrant
+
+# Vagrantfile control settings
+mount_vagrant: false
+puppet_enabled: false
+puppet_install: false
+puppet_debug: true
+puppet_verbose: true
+puppet_deprecations: true
+system_hardening: false
+os_version: centos7
+host_name: random-name
+guest_memory: 768
+ip_address: 192.168.33.33
+
+# Specify the vagrant boxes and settings associated with each OS
+boxes:
+    centos6ext:
+        name: geerlingguy/centos6
+        version: "1.1.8"
+        has_extensions: true
+        url:
+        hardening_script: cis-6.sh
+        puppet_rpm: https://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
+        puppet_agent_version: 1.9.3
+    centos7ext:
+        name: geerlingguy/centos7
+        version: "1.2.9"
+        has_extensions: true
+        url:
+        hardening_script: cis-7.sh
+        puppet_rpm: https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+        puppet_agent_version: 1.9.3
+    centos7:
+        name: centos/7
+        has_extensions: true
+        url: http://cloud.centos.org/centos/7/vagrant/x86_64/images/CentOS-7-x86_64-Vagrant-1804_02.VirtualBox.box
+        hardening_script: cis-7.sh
+        puppet_rpm: https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+        puppet_agent_version: 1.9.3
+
